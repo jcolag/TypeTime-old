@@ -13,7 +13,6 @@ int main (int argc, char *argv[], char *envp[]) {
     char string[64];
     char response[64];
     char next;
-    long long quadPart;
     struct timeval tvStart;
     struct timeval tvEnd;
     struct timeval tvDiff;
@@ -49,7 +48,7 @@ int main (int argc, char *argv[], char *envp[]) {
     string[i] = '\000';
     fprintf(stderr,"\n%s - Repeat!\n", string);
     gettimeofday(&tvStart, &tz);
-    scanf("%s", response);
+    scanf("%63s", response);
     gettimeofday(&tvEnd, &tz);
     timeval_subtract(&tvDiff, &tvEnd, &tvStart);
     lResponse = strlen(response);
@@ -62,6 +61,7 @@ int main (int argc, char *argv[], char *envp[]) {
             t += 1;
         }
         printf ("%d errors, %d seconds\n", dist, t);
+        fclose(outfile);
     }
 
     return dist;
