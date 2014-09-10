@@ -23,12 +23,15 @@ int main (int argc, char *argv[], char *envp[]) {
     srand((unsigned int)tvStart.tv_usec);
     delay = rand() % 4;
     sleep(delay);
-    for (i=1;i<argc;i++) {
+    for (i = 1; i < argc; i++) {
         if (!strcmp(argv[i],"-l") && i<argc-1) {
             i += 1;
-            length = atoi(argv[i]);
-            if (length > 64) {
-                length = 64;
+            trash = atoi(argv[i]);
+            if (trash > 64) {
+                trash = 64;
+            }
+            if (trash > 0) {
+                length = trash;
             }
         }
         if (!strcmp(argv[i],"-f") && i<argc-1) {
@@ -40,7 +43,7 @@ int main (int argc, char *argv[], char *envp[]) {
         }
     }
 
-    for (i=0;i<length;i++) {
+    for (i = 0; i < length; i++) {
         trash = rand() % 26;
         next = 'a' + (char)trash;
         string[i] = next;
